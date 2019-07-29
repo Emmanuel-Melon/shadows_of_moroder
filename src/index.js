@@ -6,9 +6,9 @@ import Game from "./Game";
 /**
  * scenes
  */
-import Map from "./Scenes/Map/Map";
-import Menu from "./Scenes/Menu/Menu";
-import Splash from "./Scenes/Splash/Splash";
+// import Map from "./Scenes/Map/Map";
+// import Menu from "./Scenes/Menu/Menu";
+// import Splash from "./Scenes/Splash/Splash";
 
 /**
  * assets
