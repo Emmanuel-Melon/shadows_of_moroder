@@ -1,0 +1,40 @@
+.splash-scene {
+    background: rgba(0,0,0,1);
+    background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(50%, rgba(20,82,65,1)), color-stop(100%, rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
+    padding: 0.5em;
+    height: 100%;
+}
+
+.splash-scene__content {
+    padding: 2.5em;
+}
+
+/* shouldn't this be locally scoped?
+* affects other scenes
+* multiple styles getting loaded, they should all be outputted as one file
+*/
+h1 {
+    color: #333;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.splash-scene__content-body {
+
+}
+
+.splash-scene__content-footer {
+    position: relative;
+    bottom: -145px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

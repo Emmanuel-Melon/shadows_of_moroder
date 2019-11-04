@@ -1,0 +1,32 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Melon"
+    }
+  ],
+  "weapons": [
+    {
+      "id": 1,
+      "name": "Melon"
+    }
+  ],
+  "splash": {
+  "title": "Shadows of Mordor"
+  },
+  "version": "1.0.0",
+  "menu": {
+    "Play": {
+      "name": "Play",
+      "type": "button"
+    },
+    "Instructions": {
+      "name": "Instructions",
+      "type": "button"
+    },
+    "Settings": {
+      "name": "Settings",
+      "type": "button"
+    }
+  }
+}

@@ -24,13 +24,17 @@ class Game {
      * loads game assets
      */
     init () {
-        const map = new Map();
-        const generatedMap = map.init();
-        return this.currentScreen.html(generatedMap);
+        // causes severe memory issues
+        // const map = new Map();
+        //
+        // const generatedMap = map.init();
+        // this.currentScreen.replaceWith(generatedMap);
+        return this.currentScreen.html("<h3>Man Listen</h3>");
     }
 
     /**
      * hello
+     * list of screens? back and forth?
      */
     changeScene () {
 
