@@ -1,79 +1,86 @@
-import $ from "jquery";
-import "./Map.css";
-import axe from "./axe.png";
-import dwarf from "./dorf2.png";
+import $ from 'jquery'
+import './Map.css'
 
 /**
  * components
  */
-import EmptyCell from "../../Components/Cells/EmptyCell";
+import EmptyCell from '../../Components/Cells/EmptyCell'
+import Positioning from '../../Components/Movements/Positioning'
+import Movement from '../../Components/Movements/Movement'
 
 class Map {
-    constructor () {
-        // markup
-        this.body = $("<div></div>").addClass("map-scene__content-body");
-        this.content = $("<div></div>").addClass("map-scene_content");
+  constructor () {
+    // markup
+    this.body = $('<div></div>').addClass('map-scene__content-body')
+    this.content = $('<div></div>').addClass('map-scene_content')
 
-        this.content.on("click", (e) => {
-            const { target } = e;
-            console.log(target);
-            console.log($(target).attr("data-id"));
-            const dataId = $(target).attr("data-id");
-            // console.log(target.data-id);
-            const img = $(`<img src=${axe} alt=${dataId} />`);
-            img.addClass("weapon");
-           $(target).html(img);
-        });
+    // make the entire board clickable
+    this.content.on('click', Movement.handleCellClick)
 
-        this.content.on("mouseover", (e) => {
+    //this.content.on('mouseover', Movement.handleCellHover)
+    // this.content.on('mouseout', Movement.handleCellLeave)
 
-        });
+    // logic
+    this.columns = 5
+    this.rows = 7
+    this.cells = []
+  }
 
-        // logic
-        this.columns = 5;
-        this.rows = 7;
-        this.cells = [];
-        this.currentCell = null;
-        this.nextCell = null;
-
-
+  init () {
+    const emptyCell = new EmptyCell().init()
+    //
+    for (let i = 0; i < this.rows; i++) {
+      // this.cells.push(emptyCell.clone());
+      for (let j = 0; j < this.columns; j++) {
+        //
+        this.cells.push(emptyCell.clone())
+      }
     }
 
-    init() {
-        const emptyCell = new EmptyCell().init();
+
+    this.cells.map(cell => {
+      const index = (this.cells.indexOf(cell) + 1)
+      cell.attr('data-id', `${index}`)
+      // I could pick any n random cells and then set them to unavailable?
+      cell.attr('data-type', `empty`)
+      cell.attr('data-content', `image`)
+      cell.attr('data-weapon', `image`)
+
+      // const rowFormula = (x, m) => m * x - 2 * m + 6
+      // const colFormula = (x, m) => m * x - 2 * m + 2
+      // use inverse of row formula
+      // const six = (x, m) => m * x - 2 * m + 6
+      // const inverse = (x, m) => Math.floor(((x - 6) / m) + 2)
+      const row = (x, m) => Math.floor(((x - 6) / m) + 2)
+
+      // where is this six coming from?
+      const col = (x, m) => Math.floor(((x - 7) / m) + 2)
+
+      // set rows and columns
+      // col 5, rows 7
+      // use mod
+      // const step_one = y - 6 = m (x - 2)
+      // y - 6 = m (x - 2)
+      // 11 = m * 3 - m + 6
+      // console.log(`row ${index % 7}`)
+      // cell.attr('row', index)
+      // create function called detectPos
+      cell.attr('points', () => {
+        const rowFactor = 4
+        // let rowPos
+        const colFactor = 3
         //
-        for(let i = 0; i < this.rows; i++) {
-            // this.cells.push(emptyCell.clone());
-            for(let j = 0; j < this.columns; i++) {
-                //
-                this.cells.push(emptyCell.clone());
-            }
-        }
+        return `(${row(index, 5)}, ${col(index, 7)})`
+      })
+      return cell
+    })
 
-        //
-        this.cells.map(cell => {
-            cell.attr("data-id", `${(this.cells.indexOf(cell) + 1).toString()}`);
-            // I could pick any n random cells and then set them to unavailable?
-            cell.attr("data-type", `empty`);
-            cell.attr("data-content", `image`);
-            cell.attr("data-weapon", `image`);
-            return cell;
-        });
-
-        const player1 = this.cells[Math.floor(Math.random() * Math.floor(this.cells.length))];
-        const player1Img = $(`<img src=${dwarf} alt="player1" />`);
-        player1Img.addClass("weapon");
-        $(player1).html(player1Img);
-
-        const player2 = this.cells[Math.floor(Math.random() * Math.floor(this.cells.length))];
-        const player2Img = $(`<img src=${dwarf} alt="player1" />`);
-        player2Img.addClass("weapon");
-        $(player2).html(player2Img);
-
-
-        this.content.append(this.cells);
-        return this.body.html(this.content);
-    }
+    // initialize player positions
+    const pos = new Positioning(this.cells)
+    pos.initPlayerPositions()
+    this.content.html(this.cells)
+    return this.body.html(this.content)
+  }
 }
 
-export default Map;
+export default Map

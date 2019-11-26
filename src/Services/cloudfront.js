@@ -6,5 +6,5 @@
  * @param duration
  */
 const playSong = (song, duration) => {
-    return `<audio src=${IntroSong} autoplay type="audio/mp3"></audio>`;
-};
+  return `<audio src=${IntroSong} autoplay type="audio/mp3"></audio>`
+}

@@ -1,6 +1,6 @@
-import $ from "jquery";
-import "./index.css";
-import Game from "./Game";
+import $ from 'jquery'
+import './index.css'
+import Game from './Game'
 // look at aliases from webpack to prevent long relative paths
 
 /**
@@ -14,48 +14,43 @@ import Game from "./Game";
  * assets
  */
 
-
-
 /**
  * global game config!
  */
-let config;
+let config
 config = {
-    splash: {
-        title: "Shadows of Mordor"
+  splash: {
+    title: 'Shadows of Mordor'
+  },
+  version: '1.0.0',
+  menu: {
+    Play: {
+      name: 'Play',
+      type: 'button'
     },
-    version: "1.0.0",
-    menu: {
-        Play: {
-            name: "Play",
-            type: "button"
-        },
-        Instructions: {
-            name: "Instructions",
-            type: "button"
-        },
-        Settings: {
-            name: "Settings",
-            type: "button"
-        },
+    Instructions: {
+      name: 'Instructions',
+      type: 'button'
+    },
+    Settings: {
+      name: 'Settings',
+      type: 'button'
     }
-};
+  }
+}
 
+// $(document).ready(() => {
 
+// load game data before everything
+// persist user choices
+// default values
+// event handling, propagation
+// clickable means a player could click on it, useful for turns?
+// invalid movements?
+// centralized event handling?
+// deferred for loading async content
+// like when user clicks on play
+const game = new Game()
+game.init()
 
-$(document).ready(() => {
-
-    // load game data before everything
-    // persist user choices
-    // default values
-    // event handling, propagation
-    // clickable means a player could click on it, useful for turns?
-    // invalid movements?
-    // centralized event handling?
-    // deferred for loading async content
-    // like when user clicks on play
-    const game = new Game();
-    game.init();
-
-});
-
+// });

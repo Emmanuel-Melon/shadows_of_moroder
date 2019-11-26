@@ -25,3 +25,7 @@
     height: auto;
     width: 100%;
 }
+
+.cell-hovered {
+    background: rebeccapurple;
+}

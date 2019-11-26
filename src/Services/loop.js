@@ -1,12 +1,12 @@
 const update = () => {
-    console.log("updating view!");
-};
+  console.log('updating view!')
+}
 
 // game loop!
 const MainLoop = () => {
-    window.requestAnimationFrame(MainLoop);
-    update();
-};
+  window.requestAnimationFrame(MainLoop)
+  update()
+}
 
 // while the game is still on
 // loop through players

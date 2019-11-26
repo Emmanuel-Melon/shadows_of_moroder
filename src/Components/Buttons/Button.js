@@ -1,8 +1,7 @@
-import "./Button.css";
+import './Button.css'
 
 const Button = (options) => {
+  return `<button>${options.name}</button>`
+}
 
-  return `<button>${options.name}</button>`;
-};
-
-export default Button;
+export default Button
