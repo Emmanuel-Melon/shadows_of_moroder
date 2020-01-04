@@ -19,7 +19,21 @@
     background: rebeccapurple;
 }
 
+/* this causing a bug, the event listenr is the map instead of the actual player*/
 .player-on {
-    background: red;
+    cursor: pointer;
+    background: #0014ff;
+}
+
+
+.player-on:hover {
+    cursor: pointer;
+}
+
+.empty {
+    background: #ffb710;
+}
+
+.empty-hover {
     cursor: pointer;
 }

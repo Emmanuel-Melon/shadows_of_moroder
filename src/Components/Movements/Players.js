@@ -9,6 +9,13 @@ import Movements from './Movement'
 class Players {
   constructor (positions) {
     this.positions = positions
+    this.obstacles = [
+      "player",
+      "trap"
+    ]
+    this.health = 100
+    this.winner = false
+    this.turn = false
   }
 
   initPlayerOne () {
@@ -20,7 +27,7 @@ class Players {
     Players.addAttributes({
       name: 'Player 2',
       id: 2,
-      ...playerOne
+      ...playerOne,
     })
     player1Img.addClass('weapon')
     // does this replace or append?
@@ -47,8 +54,6 @@ class Players {
   }
 
   static addAttributes (player) {
-    // how do I access this object man?
-    console.log(player)
     const { id, name } = player
     $(player).attr('data-player-id', id)
     $(player).attr('data-type', 'player')

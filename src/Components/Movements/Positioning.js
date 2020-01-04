@@ -10,7 +10,6 @@ import Players from './Players'
 class Positioning {
   constructor (positions) {
     this.positions = positions
-    console.log(positions)
     Positioning.getPlayerPositions()
   }
 
@@ -43,7 +42,7 @@ class Positioning {
   }
 
   static getPlayerPositions () {
-    console.log('getting these positions!!')
+
   }
 
   /**
