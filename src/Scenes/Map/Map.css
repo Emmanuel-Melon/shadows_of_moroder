@@ -27,5 +27,11 @@
 }
 
 .cell-hovered {
-    background: rebeccapurple;
+    cursor: pointer;
+    background: #991c39;
+}
+
+.cell-hovered:hover {
+    cursor: pointer;
+    background: #F0E92B;
 }
