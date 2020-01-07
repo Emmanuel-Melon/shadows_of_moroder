@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import './EmptyCell.css'
+import './Cell.css'
 
 class EmptyCell {
   constructor () {

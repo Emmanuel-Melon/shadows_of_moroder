@@ -19,7 +19,6 @@ class Positioning {
 
   initBoard () {
     const cells = this.positions
-
   }
 
   /**
@@ -38,7 +37,6 @@ class Positioning {
 
     players.initPlayerOne()
     players.initPlayerTwo()
-
   }
 
   static getPlayerPositions () {
@@ -52,7 +50,6 @@ class Positioning {
   getRandomPosition () {
     return this.positions[Math.floor(Math.random() * Math.floor(this.positions.length))]
   }
-
 }
 
 export default Positioning

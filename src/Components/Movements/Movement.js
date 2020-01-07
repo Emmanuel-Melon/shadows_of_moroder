@@ -1,20 +1,19 @@
 import $ from 'jquery'
 
 /**
- *
+ * CellItem that could be extended by Player, Weapon or Obstacle
  */
 class Movements {
   // program structure has to be changed
-  constructor(cells) {
+  constructor (cells) {
     console.log(cells)
     this.cells = cells
     this.maxSteps = 3
     this.stepTaken = 0
   }
 
-
   static extractCoords (point) {
-    const pos = $(point).attr('points');
+    const pos = $(point).attr('points')
     const [x, y] = pos.split(',')
     return {
       x: parseInt(x),
@@ -34,7 +33,7 @@ class Movements {
   // handle differently if target isn't a cell
   // we only care about cells
   static handleCellClick (e) {
-    console.log("clicked")
+    console.log('clicked')
     const { target, delegateTarget } = e
     const type = $(target).attr('data-type') || $(delegateTarget).attr('data-type')
     console.log(type)
@@ -52,9 +51,9 @@ class Movements {
       console.log(`Top Cell: ${topCell}`)
       let bottomCell = `(${x + 1}, ${y})`
       console.log(`Bottom Cell: ${bottomCell}`)
-      let rightCell = `(${x}, ${y + 1})`;
+      let rightCell = `(${x}, ${y + 1})`
       console.log(`Right Cell: ${rightCell}`)
-      let leftCell = `(${x},${y - 1})`;
+      let leftCell = `(${x},${y - 1})`
       console.log(`Left Cell: ${leftCell}`)
     } else if (type === 'empty') {
       // $(delegateTarget).addClass('player-on')

@@ -1,0 +1,60 @@
+.cell {
+    background: #293E23;
+    border: solid 1px #6CAA2F;
+    height: 65px;
+    width: 65px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.cell-hovered {
+    cursor: pointer;
+    background: rebeccapurple;
+}
+
+/* this causing a bug, the event listenr is the map instead of the actual player*/
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-size: contain;
+    background: #6CAA2F url(../../../assets/img/upg_helmet.png) no-repeat;
+}
+
+
+.current-player {
+    cursor: pointer;
+    border: solid 2px #ffb710;
+}
+
+.allowed {
+    background: rgba(255, 183, 16, 0.7);
+}
+
+.unavailable {
+    background-size: contain;
+    background: #8a1433 url(../../../assets/img/map.png) no-repeat;
+}
+
+.weapon {
+    background-size: contain;
+    background: transparent url(../../../assets/img/axe.png) no-repeat;
+}
+
+.empty-hover {
+    cursor: pointer;
+    background: #0014ff;
+}
+
+.active {
+    background: #F0E92B;
+}
+
+.active:hover {
+    cursor: pointer;
+}
+

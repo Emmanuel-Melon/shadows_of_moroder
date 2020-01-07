@@ -1,10 +1,12 @@
 import $ from 'jquery'
 import './Cell.css'
 
-class UnavailableCell {
-  constructor (GRID_SIZE, game) {
-    this.game = game
+class Weapon {
+  constructor (GRID_SIZE, weapon, game) {
     this.GRID_SIZE = GRID_SIZE
+    this.className = weapon.className
+    this.game = game
+    this.add()
   }
 
   static getRandomInt (min, max) {
@@ -19,25 +21,22 @@ class UnavailableCell {
 
   placeItem (row, col, itemClassName) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
-    cell.addClass('unavailable')
-    cell.attr('data-type', 'unavailable')
+    cell.addClass('weapon')
+    cell.attr('data-type', 'weapon')
+
     // Make that cell unavailable for later use
     this.game.unavailableCells.push(`${row},${col}`)
   }
 
-  dimCell () {
-    let randCellRow = UnavailableCell.getRandomInt(0, this.GRID_SIZE - 1)
-    let randCellCol = UnavailableCell.getRandomInt(0, this.GRID_SIZE - 1)
+  add () {
+    let randCellRow = Weapon.getRandomInt(1, this.GRID_SIZE - 2)
+    let randCellCol = Weapon.getRandomInt(1, this.GRID_SIZE - 2)
 
     // We've found an available cell
     if (this.isAvailableCell(randCellRow, randCellCol)) {
-      const cell = this.isAvailableCell(randCellRow, randCellCol)
-      this.placeItem(randCellRow, randCellCol, 'unavailable')
-    } else {
-      // Try again!
-      return this.dimCell()
+      return this.placeItem(randCellRow, randCellCol, 'weapon')
     }
   }
 }
 
-export default UnavailableCell
+export default Weapon

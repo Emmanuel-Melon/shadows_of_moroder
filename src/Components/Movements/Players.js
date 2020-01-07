@@ -1,5 +1,5 @@
-import $ from "jquery";
-import axe from "Scenes/Map/axe.png";
+import $ from 'jquery'
+import axe from 'Scenes/Map/axe.png'
 
 /**
  * components
@@ -10,8 +10,8 @@ class Players {
   constructor (positions) {
     this.positions = positions
     this.obstacles = [
-      "player",
-      "trap"
+      'player',
+      'trap'
     ]
     this.health = 100
     this.winner = false
@@ -27,15 +27,12 @@ class Players {
     Players.addAttributes({
       name: 'Player 2',
       id: 2,
-      ...playerOne,
+      ...playerOne
     })
     player1Img.addClass('weapon')
     // does this replace or append?
     // append or replace?
     $(playerOne).text('1')
-
-
-
   }
 
   initPlayerTwo () {
