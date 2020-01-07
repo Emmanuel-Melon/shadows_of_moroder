@@ -4,89 +4,40 @@ import './Map.css'
 /**
  * components
  */
-import EmptyCell from '../../Components/Cells/EmptyCell'
-import Positioning from '../../Components/Movements/Positioning'
-import Movement from '../../Components/Movements/Movement'
+// import EmptyCell from '../../Components/Cells/EmptyCell'
+// import Positioning from '../../Components/Movements/Positioning'
+// import Movement from '../../Components/Movements/Movement'
 
 class Map {
-  constructor () {
-    this.body = $('<div></div>').addClass('map-scene__content-body')
+  constructor (gameContainer, gridSize, currentGame) {
+    this.gameContainer = gameContainer
+    console.log(gameContainer)
+    this.gridSize = gridSize
+    this.game = currentGame
+
+
     this.content = $('<div></div>').addClass('map-scene_content')
 
-    // logic
-    this.columns = 5 // change to 6
-    this.rows = 7 // change to 7
-    this.cells = []
-
-
-    // do stuff here
-    const movement = new Movement(this.cells)
-
-    // make the entire board clickable
-    this.body.click(Movement.handleCellClick)
-
-    this.content.mouseover(() => {
-      console.log("hovering")
-    })
-    // this.content.on('mouseout', Movement.handleCellLeave)
+    // initialization
+    this.draw()
   }
 
-  resizeCell () {
-    // resize cell depending on the size of screen
-  }
-
-  // places an Item in a given location
-  placeItem (row, col, item) {
-
-  }
-
-  init () {
-    const emptyCell = new EmptyCell().init()
-
-    // use an even number of rows and columns
-    for (let i = 0; i < this.rows; i++) {
-      for (let j = 0; j < this.columns; j++) {
-        this.cells.push(emptyCell.clone())
+  draw () {
+    for (let row = 0; row < this.gridSize; row++) {
+      for (let col = 0; col < this.gridSize; col++) {
+        this.gameContainer.append(Map.createGridItem(row, col))
+        this.game.availableCells.push([row, col])
       }
     }
+  }
 
-    const row = (x, m) => Math.floor(((x - 6) / m) + 2)
-    // hardcoded solution
-    const col = (x, m) => {
-      if(x <= 5) {
-        return x
-      } else if (x <= 10) {
-        return x - m
-      } else if (x <= 15) {
-        return x - m * 2
-      } else if (x <= 20) {
-        return x - m * 3
-      } else if (x <= 25) {
-        return x - m * 4
-      } else if (x <= 30) {
-        return x - m * 5
-      } else if (x <= 35) {
-        return x - m * 6
-      }
-    }
-
-
-    this.cells.map(cell => {
-      const index = (this.cells.indexOf(cell) + 1)
-      cell.attr('data-id', `${index}`)
-      cell.attr('data-type', `empty`)
-      cell.attr('data-content', `image`)
-      cell.attr('data-weapon', `image`)
-      cell.attr('points', () => {
-        return `${row(index, 5)},${col(index, 5)}`
-      })
-      return cell
-    })
-
-    const pos = new Positioning(this.cells)
-    pos.initPlayerPositions()
-    this.content.html(this.cells)
-    return this.body.html(this.content)
+  static createGridItem (row, col) {
+    let cell = $('<div></div>').addClass('cell')
+    cell.attr('data-row', row)
+    cell.attr('data-col', col)
+    cell.attr('data-type', `empty`)
+    cell.attr('data-pos', `(${row}, ${col})`)
+    return cell
   }
 }
 
