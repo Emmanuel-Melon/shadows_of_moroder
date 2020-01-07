@@ -1,35 +1,57 @@
 import $ from 'jquery'
 // import game from "./game.json";
 
-/**
- * scenes
- */
-import Map from './Scenes/Map/Map'
-// import Menu from "./Scenes/Menu/Menu";
-// import Splash from "./Scenes/Splash/Splash";
-
-/**
- * assets
- */
-
 class Game {
-  constructor () {
-    this.game = $('#game')
-    this.currentScreen = $('#currentScreen')
-    this.paused = false
-    this.nextScene = null
+  constructor (players, weapons, game) {
+    this.game = game
+    this.players = players
+    this.weapons = weapons
+    this.currentTurn = 0
+    this.currentPlayer = null
+    this.currentLocation = null
+    this.nextLocation = null
+    this.allowedTop = []
+    this.allowedRight = []
+    this.allowedLeft = []
+    this.allowedBottom = []
   }
 
-  /**
-     * loads game assets
-     */
   init () {
-    // causes severe memory issues
-    const map = new Map()
-    //
-    const generatedMap = map.init()
-    this.currentScreen.html(generatedMap)
+    // get all cells
+    const gridItems = $(".cell")
+
+    // assign turn into player
+    const [currentPlayer] = $(".player")
+
+    // highlight current player
+    $(currentPlayer).addClass('current-player')
+
+    // get nearby cells
+    const row = $(currentPlayer).attr('data-row')
+    const col = $(currentPlayer).attr('data-col')
+
+    // using a range in query selectors?
+    let topCell = $(`[data-pos='(${parseInt(row) - parseInt(1)}, ${col})']`).addClass('allowed')
+    this.allowedTop.push(topCell)
+    let rightCell = $(`[data-pos='(${row}, ${parseInt(col) + parseInt(1)})']`).addClass('allowed')
+    let bottomCell = $(`[data-pos='(${parseInt(row) + parseInt(1)}, ${col})']`).addClass('allowed')
+    let leftCell = $(`[data-pos='(${row}, ${parseInt(col) - parseInt(1)})']`).addClass('allowed')
+
+    // click events
+    $(gridItems).click(e => {
+      // $(e.target).addClass('unavailable')
+      console.log(e.target)
+
+      // one location or all possible locations?
+      // I can legit use a stack, add a last location at the top
+      this.currentLocation = $(e.target).attr('data-pos')
+      console.log(this.currentLocation)
+      console.log(this.allowedTop)
+    })
+
+
   }
 }
 
 export default Game
+
