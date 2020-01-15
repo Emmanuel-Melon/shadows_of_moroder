@@ -46,8 +46,9 @@ config = {
   }
 }
 
-const players = {
-  one: {
+const players = [
+  {
+    turn: 1,
     name: 'El Shako',
     type: 'Human',
     rowMin: 0,
@@ -58,7 +59,8 @@ const players = {
     attack: 10,
     shield: 10
   },
-  two: {
+  {
+    turn: 0,
     name: 'Eman',
     rowMin: Math.floor(12 / 2),
     rowMax: 12 - 1,
@@ -68,7 +70,8 @@ const players = {
     attack: 10,
     shield: 10
   }
-}
+
+]
 
 const WEAPONS = [
   {
@@ -105,8 +108,7 @@ class Main {
 
   init () {
     // initialize a new map
-    new Map(this.gameContainer, this.gridSize, this)
-    console.log(this.unavailableCells)
+    new Map(this.gameContainer, this.gridSize, this, players)
 
     // initialize dimmed cells
     const unavailableCell = new UnavailableCell(this.gridSize, this)
@@ -115,8 +117,8 @@ class Main {
     }
 
     // initialize players
-    new Character(this.gridSize, players.one, this)
-    new Character(this.gridSize, players.two, this)
+    new Character(this.gridSize, players[0], this)
+    new Character(this.gridSize, players[1], this)
 
     // initialize weapons
     for (let i = 0; i < this.WEAPONS_COUNT; i++) {
@@ -133,5 +135,7 @@ class Main {
 }
 
 // initialize game
-const main = new Main()
-main.init()
+$(document).ready(() => {
+  const main = new Main()
+  main.init()
+})
