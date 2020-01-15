@@ -11,13 +11,10 @@ import './Map.css'
 class Map {
   constructor (gameContainer, gridSize, currentGame) {
     this.gameContainer = gameContainer
-    console.log(gameContainer)
     this.gridSize = gridSize
     this.game = currentGame
 
-
     this.content = $('<div></div>').addClass('map-scene_content')
-
     // initialization
     this.draw()
   }

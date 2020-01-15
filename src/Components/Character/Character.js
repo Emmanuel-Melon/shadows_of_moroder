@@ -9,6 +9,7 @@ class Character {
     this.colMax = player.colMax
     this.className = player.className
     this.game = game
+    this.player = player
     this.add()
   }
 
@@ -26,6 +27,8 @@ class Character {
     const cell = $(`[data-pos='(${row}, ${col})']`)
     cell.addClass('player')
     cell.attr('data-type', 'player')
+    cell.attr('data-name', this.player.name)
+    cell.attr('data-turn', this.player.turn)
 
     // Make that cell unavailable for later use
     this.game.unavailableCells.push(`${row},${col}`)
