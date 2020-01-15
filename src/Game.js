@@ -9,32 +9,40 @@ class Game {
   }
 
   movePlayer (oldPos, newPos) {
-    const oldCoords = this.getCoords(oldPos)
-    const newCoords = this.getCoords(newPos)
-
     // remove class current player
-    $(oldPos).removeClass('current-player player')
-    console.log(oldPos)
+    // only remove if event target has class player
+    if(!$(oldPos).hasClass('player')) {
+      $(oldPos).removeClass('current-player player')
+    }
+
+    // where is active? can I use active instead of old pos?
 
     // remove highlights
 
+    // transfer properties too?
+
     // add class player on newPos
-    $('.cell').removeClass("allowed player-on")
-    $(newPos).addClass('player')
-    console.log(newPos)
+    // only add if newPos has class allowed
+    //$(oldPos).removeClass("allowed player-on")
+    if($(newPos).hasClass('allowed')) {
+      this.active = newPos
+      $(newPos).removeClass('allowed')
+      $(newPos).addClass('player')
+      console.log(newPos)
+    }
 
     // switch turns
-    this.switchTurn(oldPos)
+    // this.switchTurn(oldPos)
   }
 
-  getPlayerPos (row, col) {
+  static getPlayerPos (row, col) {
     $(`[data-pos='(${parseInt(row) - parseInt(1)}, ${col})'], [data-pos='(${parseInt(row) - parseInt(2)}, ${col})']`).addClass('allowed')
     $(`[data-pos='(${row}, ${parseInt(col) + parseInt(1)})'], [data-pos='(${row}, ${parseInt(col) + parseInt(2)})']`).addClass('allowed')
     $(`[data-pos='(${parseInt(row) + parseInt(1)}, ${col})'], [data-pos='(${parseInt(row) + parseInt(2)}, ${col})']`).addClass('allowed')
     $(`[data-pos='(${row}, ${parseInt(col) - parseInt(1)})'], [data-pos='(${row}, ${parseInt(col) - parseInt(2)})']`).addClass('allowed')
   }
 
-  getCoords (player) {
+  static getCoords (player) {
     const row = $(player).attr('data-row')
     const col = $(player).attr('data-col')
     return {
@@ -46,24 +54,18 @@ class Game {
   // get allowed cells
   switchTurn (player) {
     const turn = $(player).attr('data-turn');
-    console.log(turn)
     // $('.cell').removeClass('allowed')
-    console.log(parseInt(turn))
-    if(turn == 1) {
-      console.log('one')
+    if(parseInt(turn) === 1) {
       this.active = $(`[data-turn='${parseInt(0)}']`).addClass('current-player')
 
-      const { x, y } = this.getCoords(this.active)
-      console.log(this.active)
+      const { x, y } = Game.getCoords(this.active)
       // get player positions
-      this.getPlayerPos(x, y)
-    } else if(turn == 0) {
-      console.log('two')
+      Game.getPlayerPos(x, y)
+    } else if(parseInt(turn) === 0) {
       this.active = $(`[data-turn='${parseInt(1)}']`).addClass('current-player')
-      const { x, y } = this.getCoords(this.active)
-      console.log(this.active)
+      const { x, y } = Game.getCoords(this.active)
       // get player positions
-      this.getPlayerPos(x, y)
+      Game.getPlayerPos(x, y)
     }
   }
 
@@ -78,15 +80,14 @@ class Game {
 
     // highlight active player
     this.active = $(`[data-turn='${parseInt(1)}']`)
-    var attr = $(this.active).attr('data-name');
     $(this.active).addClass('current-player')
     $(this.active).attr('data-turn', first.turn)
 
     // get nearby cells
-    const { x, y } = this.getCoords(this.active)
+    const { x, y } = Game.getCoords(this.active)
 
     // get player positions
-    this.getPlayerPos(x, y)
+    Game.getPlayerPos(x, y)
 
     // click events
     allowed = $('.allowed')
@@ -98,9 +99,21 @@ class Game {
       $(this).removeClass('player-on')
     })
 
-    allowed.click(function (e) {
+    $('.cell').click(function (e) {
+      console.log(e.target)
       const currentPlayer = $('.current-player')
-      self.movePlayer(currentPlayer, e.target)
+      if($(e.target).hasClass('player')) {
+        self.movePlayer(currentPlayer, e.target)
+      } else if($(e.target).hasClass('allowed')) {
+        self.movePlayer(currentPlayer, e.target)
+      } else {
+        console.log('clicked regular cell')
+      }
+    })
+
+    $('.player').click(function (e) {
+      console.log(e.target)
+      console.log('clicked on player')
     })
   }
 }
