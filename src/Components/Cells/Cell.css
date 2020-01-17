@@ -33,11 +33,12 @@
     align-items: center;
     cursor: pointer;
     background-size: contain;
-    background: url(../../../assets/img/upg_helmet.png) no-repeat;
+    background: transparent url(../../../assets/img/upg_helmet.png) no-repeat;
 }
 
 .current-player {
     cursor: pointer;
+    border: solid 0.1em red;
 }
 
 .allowed {
@@ -75,4 +76,8 @@
 .red:hover {
     background: red;
     cursor: pointer;
+}
+
+.empty-clicked {
+
 }
