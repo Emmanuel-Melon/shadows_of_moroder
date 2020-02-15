@@ -57,7 +57,9 @@ const players = [
     colMax: 12 - 1,
     health: 100,
     attack: 10,
-    shield: 10
+    shield: 10,
+    active: true,
+    player: 'player-1'
   },
   {
     turn: 0,
@@ -68,28 +70,34 @@ const players = [
     colMax: 12 - 1,
     health: 100,
     attack: 10,
-    shield: 10
+    shield: 10,
+    active: false,
+    player: 'player-2'
   }
 
 ]
 
 const WEAPONS = [
   {
+    name: 'axe',
     type: 'defense',
     className: 'weapon-defense',
     effect: 10
   },
   {
+    name: 'sword',
     type: 'attack',
     className: 'weapon-attack',
     effect: 10
   },
   {
+    name: 'spear',
     type: 'health',
     className: 'weapon-health',
     effect: 10
   },
   {
+    name: 'health',
     type: 'attack',
     className: 'weapon-attack-super',
     effect: 20
@@ -103,7 +111,8 @@ class Main {
     this.unavailableCells = []
     this.gridSize = 12
     this.DISABLED_CELLS = 15
-    this.WEAPONS_COUNT = 5
+    this.WEAPONS_COUNT = 4
+    this.panes = $('.pane')
   }
 
   init () {
