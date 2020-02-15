@@ -4,7 +4,7 @@ import './Cell.css'
 class Weapon {
   constructor (GRID_SIZE, weapon, game) {
     this.GRID_SIZE = GRID_SIZE
-    this.className = weapon.className
+    this.className = weapon.name
     this.game = game
     this.add()
   }
@@ -19,9 +19,9 @@ class Weapon {
     return !this.game.unavailableCells.includes(`${row},${col}`)
   }
 
-  placeItem (row, col, itemClassName) {
+  placeItem (row, col) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
-    cell.addClass('weapon')
+    cell.addClass(this.className)
     cell.attr('data-type', 'weapon')
 
     // Make that cell unavailable for later use

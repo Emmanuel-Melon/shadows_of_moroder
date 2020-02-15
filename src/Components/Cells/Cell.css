@@ -15,15 +15,23 @@
     background: rebeccapurple;
 }
 
-/* this causing a bug, the event listenr is the map instead of the actual player*/
+/* this causing a bug, the ev
+    background: #6CAA2F;ent listenr is the map instead of the actual player*/
 .player {
-    border: solid 2px #ffb710;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.player-1 {
     background-size: contain;
-    background: url(../../../assets/img/upg_helmet.png) no-repeat;
+    background: #6CAA2F url(../../../assets/img/orc.png) no-repeat;
+}
+
+.player-2 {
+    background-size: contain;
+    background: #6CAA2F url(../../../assets/img/khorneBerzerker.png) no-repeat;
 }
 
 
@@ -33,35 +41,46 @@
     align-items: center;
     cursor: pointer;
     background-size: contain;
-    background: transparent url(../../../assets/img/upg_helmet.png) no-repeat;
+    background: rgba(240, 233, 43, 0.47) url(../../../assets/img/upg_helmet.png) no-repeat;
 }
 
 .current-player {
     cursor: pointer;
-    border: solid 0.1em red;
 }
 
 .allowed {
-    background: rgba(255, 169, 16, 0.4);
+    border: solid 1px #ffb710;
 }
 
 .unavailable {
     background-size: contain;
-    background: #8a1433 url(../../../assets/img/map.png) no-repeat;
+    background: rgba(138, 20, 51, 0.4) url(../../../assets/img/x.png) no-repeat;
 }
 
-.weapon {
+.axe {
     background-size: contain;
     background: transparent url(../../../assets/img/axe.png) no-repeat;
+}
+
+/* upg_sword */
+.spear {
+    background-size: contain;
+    background: transparent url(../../../assets/img/hammer.png) no-repeat;
+}
+
+.sword {
+    background-size: contain;
+    background: transparent url(../../../assets/img/dagger.png) no-repeat;
+}
+
+.health {
+    background-size: contain;
+    background: transparent url(../../../assets/img/heart.png) no-repeat;
 }
 
 .empty-hover {
     cursor: pointer;
     background: #0014ff;
-}
-
-.active {
-    background: #F0E92B;
 }
 
 .active:hover {
