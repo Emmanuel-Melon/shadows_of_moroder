@@ -1,5 +1,8 @@
 import $ from 'jquery'
 
+/**
+ *
+ */
 class Game {
   constructor (players, weapons, game) {
     this.game = game
@@ -7,63 +10,77 @@ class Game {
     this.weapons = weapons
     this.active = null
     this.turn = true
+    this.allowed = []
+  }
+
+  detectObstacle (player) {
+
+  }
+
+  detectWeapon (player) {
+
+  }
+
+  detectPlayer (player) {
+
   }
 
   movePlayer (oldPos, newPos) {
-    // where is active? can I use active instead of old pos?
 
-    // remove highlights
+    if($(newPos).hasClass('weapon')) {
+      console.log('landing on weapon')
+      console.log(newPos)
+      $(newPos.removeClass('weapon'))
 
-    // transfer properties too?
-
-    // add class player on newPos
-    // only add if newPos has class allowed
-    //$(oldPos).removeClass("allowed player-on")
-    if($(newPos).hasClass('player-on')) {
-
-      // check turn before making a move
-      // remove class current player
-      // double clicking on a player removes a player irregardless of their turn
-      // try to check turns before moving forward
-      $(oldPos).removeClass('current-player player')
-      // console.log($(oldPos).data())
-
-      $(newPos).removeClass('allowed player-on').addClass('player').data($(oldPos).data())
-
-      // copy and remove attributes from one cell to another
-
-
-      // only remove if event target has class player
-      // don't remove class current player from old Pos
-      console.log(oldPos)
-      if($(oldPos).hasClass('player')) {
-        $(oldPos).removeClass('current-player player')
-
-        // remove allowed Positions after a movement
-        console.log(oldPos)
-        // only highlight if movement is confirmed
-      }
-
-      this.active = newPos
-      $(newPos).removeClass('allowed player-on')
-      $(newPos).addClass('player')
-      // console.log(newPos)
-
-      this.switchTurn(oldPos)
+      // get weapon information (strength, attack)
+      // update player stats (attack, current weapon)
+      // add player dashboards?
     }
 
-    // switch turns
 
+    if($(newPos).hasClass('player-on')) {
+      const classes = $(oldPos).attr("class").split(/\s+/);
+
+      // remove classes from old player positiino
+      $(oldPos).removeClass(`${classes[1]} ${classes[2]} ${classes[3]} ${classes[4]}`)
+
+      $(newPos).removeClass('allowed player-on')
+
+
+      // add class player-number to new position
+      $(newPos).addClass('player').addClass(classes[2])
+
+      // remove highlighted cells
+      this.removeHighlight(this.allowed)
+
+
+      // remove allowed Positions after a movement
+      this.switchTurn(newPos)
+
+    }
   }
 
   getPlayerPos (row, col) {
-    $(`[data-pos='(${parseInt(row) - parseInt(1)}, ${col})'], [data-pos='(${parseInt(row) - parseInt(2)}, ${col})']`).addClass('allowed')
-    $(`[data-pos='(${row}, ${parseInt(col) + parseInt(1)})'], [data-pos='(${row}, ${parseInt(col) + parseInt(2)})']`).addClass('allowed')
-    $(`[data-pos='(${parseInt(row) + parseInt(1)}, ${col})'], [data-pos='(${parseInt(row) + parseInt(2)}, ${col})']`).addClass('allowed')
-    $(`[data-pos='(${row}, ${parseInt(col) - parseInt(1)})'], [data-pos='(${row}, ${parseInt(col) - parseInt(2)})']`).addClass('allowed')
+    const topCell = $(`[data-pos='(${parseInt(row) - parseInt(1)}, ${col})'], [data-pos='(${parseInt(row) - parseInt(2)}, ${col})']`)
+    const rightCell = $(`[data-pos='(${row}, ${parseInt(col) + parseInt(1)})'], [data-pos='(${row}, ${parseInt(col) + parseInt(2)})']`)
+    const bottomCell =  $(`[data-pos='(${parseInt(row) + parseInt(1)}, ${col})'], [data-pos='(${parseInt(row) + parseInt(2)}, ${col})']`)
+    const leftCell = $(`[data-pos='(${row}, ${parseInt(col) - parseInt(1)})'], [data-pos='(${row}, ${parseInt(col) - parseInt(2)})']`)
+    return [topCell, rightCell, bottomCell, leftCell]
   }
 
-  static getCoords (player) {
+  highLightAvailable (cells) {
+    cells.forEach(cell => {
+      $(cell).addClass('allowed')
+    })
+  }
+
+  removeHighlight (cells) {
+    cells.forEach(cell => {
+      $(cell).removeClass('allowed')
+    })
+  }
+
+  getCoords (player) {
     const row = $(player).attr('data-row')
     const col = $(player).attr('data-col')
     return {
@@ -72,30 +89,32 @@ class Game {
     }
   }
 
-  // get allowed cells
   switchTurn (player) {
-    console.log(player)
-    const turn = $(player).attr('data-turn');
-    // $('.cell').removeClass('allowed')
-    if(parseInt(turn) === 1) {
-      let other = $(`[data-turn='${parseInt(0)}']`).addClass('current-player')
+    if($(player).hasClass('player-1')) {
+      let other = $('.player-2')
+      this.active = $(other).addClass('active').addClass('current-player').removeClass('next')
 
-      console.log("************************")
-      console.log(other)
-      this.active = other
+      // get nearby positions
+      const { x, y } = this.getCoords(this.active)
 
-      console.log("************************")
-      console.log(this.active)
-      const { x, y } = Game.getCoords(this.active)
-      console.log(`x: ${x}, y: ${y}`)
-      // get player positions
-      this.getPlayerPos(x, y)
-    } else if(parseInt(turn) === 0) {
-      this.active = $(`[data-turn='${parseInt(1)}']`).addClass('current-player')
-      const { x, y } = Game.getCoords(this.active)
-      // get player positions
-      console.log(`x: ${x}, y: ${y}`)
-      this.getPlayerPos(x, y)
+      // get allowed player positions
+      this.allowed = this.getPlayerPos(x, y)
+
+      // highlight available positions
+      this.highLightAvailable(this.allowed)
+
+    } else if($(player).hasClass('player-2')) {
+      let other = $('.player-1').addClass('current-player')
+      this.active = $(other).addClass('active').removeClass('next')
+
+      // get nearby positions
+      const { x, y } = this.getCoords(this.active)
+
+      // get allowed player positions
+      this.allowed = this.getPlayerPos(x, y)
+
+      // highlight available positions
+      this.highLightAvailable(this.allowed)
     }
   }
 
@@ -103,40 +122,45 @@ class Game {
     let self = this
     let cell = $('.cell')
 
-    // get players
+    // get first player
     const [first] = this.players
 
+
     // highlight active player
-    this.active = $(`[data-turn='${parseInt(1)}']`)
+    this.active = $('.active')
     $(this.active).addClass('current-player')
     $(this.active).attr('data-turn', first.turn)
 
     // get nearby cells
-    const { x, y } = Game.getCoords(this.active)
+    const { x, y } = this.getCoords(this.active)
 
     // get player positions
-    this.getPlayerPos(x, y)
+    this.allowed = this.getPlayerPos(x, y)
+
+    // highlight available cells
+    this.highLightAvailable(this.allowed)
 
     /************************************************************************
      * * **************************** HOVER EVENTS  ****************************
      ************************************************************************
      */
-    const allowed = $('.allowed')
-    allowed.hover(function () {
-
-        $(this).removeClass('allowed')
+    cell.hover(function () {
+      if($(this).hasClass('allowed')) {
+        // $(this).removeClass('allowed')
         $(this).addClass('player-on')
-
+      }
     }, function () {
-      $(this).removeClass('player-on')
-      $(this).addClass('allowed')
-    }).click( function(e) {
-      // this might be the issue!
-      // static, one value!
-      // remove current player man!
-      // $('.current-player').removeClass('current-player')
-      // it should be the position of the currently active player, not a static value, son!
-      self.movePlayer(self.active, e.target)
+      if($(this).hasClass('allowed')) {
+        // $(this).removeClass('allowed')
+        // $(this).addClass('player-on')
+      }
+      // account for when there's a player
+       $(this).removeClass('player-on')
+       if($(this).hasClass('player')) {
+        // $(this).removeClass('allowed')
+      } else {
+        // $(this).addClass('allowed')
+      }
     })
 
     /************************************************************************
@@ -144,14 +168,12 @@ class Game {
      ************************************************************************
      */
     cell.click(function (e) {
-      const currentPlayer = $('.current-player')
-      if($(e.target).hasClass('player')) {
-        // self.movePlayer(currentPlayer, e.target)
-      } else if($(e.target).hasClass('allowed')) {
-        // self.movePlayer(currentPlayer, e.target)
-      } else {
+      if($(e.target).hasClass('player-on')) {
+        // call the same function again?
+        self.movePlayer(self.active, e.target)
+      } else if ($(e.target).hasClass('player')) {
         // do nothing
-        // $(e.target).addClass('empty-clicked')
+        console.log(e.target)
       }
     })
   }
