@@ -16,6 +16,8 @@ import Weapon from './Components/Cells/Weapon'
 // import Map from "./Scenes/Map/Map";
 // import Menu from "./Scenes/Menu/Menu";
 // import Splash from "./Scenes/Splash/Splash";
+import Fight from "./Scenes/Fight/Fight"
+import Victory from "./Scenes/Victory/Victory"
 
 /**
  * assets
@@ -106,13 +108,16 @@ const WEAPONS = [
 
 class Main {
   constructor () {
-    this.gameContainer = $('#game')
+    this.gameContainer = $('.map')
     this.availableCells = []
     this.unavailableCells = []
     this.gridSize = 12
     this.DISABLED_CELLS = 15
     this.WEAPONS_COUNT = 4
     this.panes = $('.pane')
+    this.weapons = WEAPONS
+    this.fight = Fight
+    this.victory = Victory
   }
 
   init () {

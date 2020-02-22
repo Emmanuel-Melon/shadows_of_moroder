@@ -6,7 +6,6 @@ html, body {
     height: 100%;
     background: rgba(0,0,0,1);
     background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(50%, rgba(20,82,65,1)), color-stop(100%, rgba(0,0,0,1)));
     background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
     background: -o-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
     background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(20,82,65,1) 50%, rgba(0,0,0,1) 100%);
@@ -18,39 +17,174 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     font-family: "Gloria Hallelujah", Arial, sans-serif;
-    color: purple;
+}
+
+
+#game {
+    height: 100%;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 .current-screen {
-    height: 100%;
+    display: flex;
 }
 
-#game {
+.map {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 1.5rem;
-    margin: 0 auto;
-    max-width: 910px;
+    width: 65%;
 }
 
-
-.pane {
-    background: white;
+figure {
+    max-width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid 0.02rem #FFFFFF;
+    padding: 0.4rem;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+.pane {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem;
+    height: 80%;
+}
+
+.player-name {
+    text-align: center;
+}
+
+.player-name:after {
+    display: block;
+    margin: 0 auto;
+    content: "";
+    height: 2px;
+    width: 50%;
+    background: rgba(20,82,65,1);
 }
 
 .stats {
     list-style-type: none;
-    display: flex;
+    padding-left: 0;
     justify-content: space-between;
 }
 
 .stats li {
+    padding: 0.4rem;
+    margin: 0.2rem;
+    width: 90%;
+    text-align: center;
+}
+
+.health-bar {
+    background: rgba(20,82,65,1);
+    color: #FFFFFF;
+    border: solid 0.2rem #000000;
+}
+
+.attack-bar {
+    background: #F0E92B;
+    border: solid 0.2rem #000000;
+}
+
+.defense-bar {
+    background: #333333;
+    color: #FFFFFF;
+    border: solid 0.2rem #000000;
+}
+
+
+.profile {
+    background: #000;
+    border: solid 0.2rem rgba(20,82,65,1);
+    color: #F0E92B;
+}
+
+.pane-body {
+    padding: 1rem;
+}
+
+
+
+.now {
+    background: rgba(20,82,65,1);
+    border-top: solid 0.1rem #F0E92B;
+    border-bottom: solid 0.1rem #F0E92B;
+}
+
+
+.tag {
+
+    text-align: center;
+    color: #F0E92B;
+    padding: 0.4rem;
+    border: solid 0.02rem #FFFFFF;
+}
+
+.turn {
+    text-align: center;
+    color: #F0E92B;
+    padding: 0.4rem;
+    border: solid 0.02rem #FFFFFF;
+}
+
+.first {
+    background: rgba(20,82,65,1);
+    color: #F0E92B;
+}
+
+.fight-screen {
+    background: rgba(20,82,65,1);
+}
+
+.fight-screen-head {
+    padding: 2rem;
+    background: #000;
+    color: #FFFFFF;
+    border: solid 0.2rem rgba(20,82,65,1);
+}
+
+.fight-screen-body {
+    border: solid 0.1rem #F0E92B;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.actions {
+    color: #991c39;
+}
+
+.attack-button {
+    background: #F0E92B;
     padding: 0.5rem;
-    margin: 0.5rem;
-    background: green;
+    width: 95%;
+    margin: 0.2rem;
+    border: solid 0.2rem #000000;
+}
+
+.defense-button {
+    background: #333333;
+    padding: 0.5rem;
+    width: 95%;
+    margin: 0.2rem;
+    border: solid 0.2rem #000000;
+    color: #FFFFFF;
+}
+
+
+button:hover {
+    cursor: pointer;
 }
