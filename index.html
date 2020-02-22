@@ -9,33 +9,70 @@
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 </head>
 <body>
-<aside class="pane">
-    <div>
-        <h3>Player One</h3>
-        <ul class="stats">
-            <li>Health: 100</li>
-            <li>Attack: 100</li>
-            <li>Shield: 0</li>
-            <li>Weapon: 0</li>
-        </ul>
-    </div>
-</aside>
 <main class="game" id="game">
     <section class="current-screen" id="currentScreen">
+        <div class="pane">
+            <div>
+                <div class="pane-head">
+                    <h4  class="turn">Turn</h4>
+                </div>
+                <div class="pane-body">
+                    <div  class="profile">
+                        <h3  class="player-name">Player Two</h3>
+                        <figure>
+                            <img src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" alt="axe" />
+                        </figure>
+                    </div>
+                    <div>
+                        <h4  class="tag">Weapon</h4>
+                        <figure>
+                            <img src="https://i.pinimg.com/originals/c1/d8/a8/c1d8a8380949fb6ac86a5240ce64e758.jpg" alt="axe" />
+                        </figure>
+                    </div>
+                    <div>
+                        <ul class="stats" id="player-1">
+                            <li id="player-1-health" class="health-bar">Health 100</li>
+                            <li id="player-1-attack" class="attack-bar">Attack 100</li>
+                            <li id="player-1-shield" class="defense-bar">Defense 0</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- current screen -->
+        <div class="map">
+
+        </div>
+        <div class="pane">
+            <div>
+                <div class="pane-head">
+                    <h4  class="turn first">Turn</h4>
+                </div>
+                <div class="pane-body  now">
+                    <div  class="profile">
+                        <h3  class="player-name">Player Two</h3>
+                        <figure>
+                            <img src="https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png" alt="axe" />
+                        </figure>
+                    </div>
+                    <div>
+                        <h4  class="tag">Weapon</h4>
+                        <figure>
+                            <img src="https://i.pinimg.com/originals/c1/d8/a8/c1d8a8380949fb6ac86a5240ce64e758.jpg" alt="axe" />
+                        </figure>
+                    </div>
+                    <div>
+                        <ul class="stats" id="player-2">
+                            <li id="player-2-health" class="health-bar">Health 100</li>
+                            <li id="player-2-attack" class="attack-bar">Attack 100</li>
+                            <li id="player-2-shield" class="defense-bar">Defense 0</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
-<aside class="pane">
-    <div>
-        <h3>Player Two</h3>
-        <ul class="stats">
-            <li>Health: 100</li>
-            <li>Attack: 100</li>
-            <li>Shield: 0</li>
-            <li>Weapon: 0</li>
-        </ul>
-    </div>
-</aside>
 </body>
 <!-- WEAPONS.forEach(weapon => new Weapon(this.gridSize, weapon, this)) -->
 </html>
