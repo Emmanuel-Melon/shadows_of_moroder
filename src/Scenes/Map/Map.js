@@ -9,8 +9,8 @@ import './Map.css'
 // import Movement from '../../Components/Movements/Movement'
 
 class Map {
-  constructor (gameContainer, gridSize, currentGame) {
-    this.gameContainer = gameContainer
+  constructor (map, gridSize, currentGame) {
+    this.gameContainer = map
     this.gridSize = gridSize
     this.game = currentGame
 
