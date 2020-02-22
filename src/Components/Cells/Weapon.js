@@ -21,7 +21,7 @@ class Weapon {
 
   placeItem (row, col) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
-    cell.addClass(this.className)
+    cell.addClass(this.className).addClass('weapon')
     cell.attr('data-type', 'weapon')
 
     // Make that cell unavailable for later use

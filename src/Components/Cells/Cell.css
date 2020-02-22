@@ -26,12 +26,12 @@
 
 .player-1 {
     background-size: contain;
-    background: #6CAA2F url(../../../assets/img/orc.png) no-repeat;
+    background: transparent url(../../../assets/img/orc.png) no-repeat;
 }
 
 .player-2 {
     background-size: contain;
-    background: #6CAA2F url(../../../assets/img/khorneBerzerker.png) no-repeat;
+    background: transparent url(../../../assets/img/khorneBerzerker.png) no-repeat;
 }
 
 
@@ -40,12 +40,32 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.player-1-on {
     background-size: contain;
-    background: rgba(240, 233, 43, 0.47) url(../../../assets/img/upg_helmet.png) no-repeat;
+    background: rgba(255, 183, 16, 0.47) url(../../../assets/img/orc.png) no-repeat;
+}
+
+.player-2-on {
+    background-size: contain;
+    background: rgba(255, 183, 16, 0.47) url(../../../assets/img/khorneBerzerker.png) no-repeat;
 }
 
 .current-player {
     cursor: pointer;
+}
+
+.combat {
+    background: red;
+}
+
+.combat-screen {
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .allowed {

@@ -23,9 +23,15 @@ class Character {
     return !this.game.unavailableCells.includes(`cell_${row}_${col}`)
   }
 
-  placeItem (row, col, itemClassName) {
+  placeItem (row, col) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
     cell.addClass('player')
+    cell.addClass(this.player.player)
+    if(this.player.active) {
+        cell.addClass('active')
+    } else {
+      cell.addClass('next')
+    }
     cell.attr('data-type', 'player')
     cell.attr('data-name', this.player.name)
     cell.attr('data-turn', this.player.turn)
