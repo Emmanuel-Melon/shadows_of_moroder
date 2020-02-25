@@ -20,15 +20,16 @@ class Character {
   }
 
   isAvailableCell (row, col) {
-    return !this.game.unavailableCells.includes(`cell_${row}_${col}`)
+    const cell = !this.game.unavailableCells.includes(`${row},${col}`)
+    return !this.game.unavailableCells.includes(`${row},${col}`)
   }
 
   placeItem (row, col) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
     cell.addClass('player')
     cell.addClass(this.player.player)
-    if(this.player.active) {
-        cell.addClass('active')
+    if (this.player.active) {
+      cell.addClass('active')
     } else {
       cell.addClass('next')
     }

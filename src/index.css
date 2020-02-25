@@ -31,20 +31,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .map {
+    background: black;
+    border: solid 0.1rem white;
+    padding: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 65%;
+    width: 100%;
+}
+
+
+.main {
+    width: 60%;
+    margin: 0 auto;
 }
 
 figure {
-    max-width: 200px;
+    max-width: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid 0.02rem #FFFFFF;
-    padding: 0.4rem;
+    border: solid 0.1rem #293E23;
+    padding: 0.1rem;
 }
 
 img {
@@ -53,12 +62,22 @@ img {
 }
 
 .pane {
-    width: 15%;
+    width: 18%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.4rem;
+    border-top: solid 0.1rem white;
+    border-bottom: solid 0.1rem white;
+    padding: 1rem;
     height: 80%;
+}
+
+.left {
+    border-left: solid 0.1rem white;
+}
+
+.right {
+    border-right: solid 0.1rem white;
 }
 
 .player-name {
@@ -91,11 +110,19 @@ img {
     background: rgba(20,82,65,1);
     color: #FFFFFF;
     border: solid 0.2rem #000000;
+    padding: 0.2rem;
+    margin: 0.4rem auto;
+    width:100%;
 }
 
 .attack-bar {
     background: #F0E92B;
     border: solid 0.2rem #000000;
+    padding: 0.2rem;
+    color: #000000;
+    margin: 0.4rem auto;
+    width:100%;
+
 }
 
 .defense-bar {
@@ -112,12 +139,12 @@ img {
 }
 
 .pane-body {
-    padding: 1rem;
+    padding: 0.2rem;
 }
 
 
 
-.now {
+.active-pane {
     background: rgba(20,82,65,1);
     border-top: solid 0.1rem #F0E92B;
     border-bottom: solid 0.1rem #F0E92B;
@@ -125,18 +152,19 @@ img {
 
 
 .tag {
-
     text-align: center;
     color: #F0E92B;
     padding: 0.4rem;
-    border: solid 0.02rem #FFFFFF;
+    border: solid 0.04rem #FFFFFF;
 }
 
 .turn {
     text-align: center;
     color: #F0E92B;
     padding: 0.4rem;
-    border: solid 0.02rem #FFFFFF;
+    width: 90%;
+    margin: 0 auto;
+    border: solid 0.04rem #FFFFFF;
 }
 
 .first {
@@ -144,23 +172,41 @@ img {
     color: #F0E92B;
 }
 
+.fight-heading {
+    text-align: center;
+    border: solid 0.1rem #293E23;
+    padding: 0.4rem;
+    width: 50%;
+    margin: 0 auto;
+}
+
 .fight-screen {
-    background: rgba(20,82,65,1);
+    width: 100%;
+    height: 100%;
+    border-left: solid 0.1rem #FFFFFF;
+    border-right: solid 0.1rem #FFFFFF;
+    display: none;
 }
 
 .fight-screen-head {
     padding: 2rem;
     background: #000;
     color: #FFFFFF;
-    border: solid 0.2rem rgba(20,82,65,1);
+    border-bottom: solid 0.1rem #FFFFFF;
+    border-top: solid 0.1rem #FFFFFF;
+
 }
 
 .fight-screen-body {
-    border: solid 0.1rem #F0E92B;
     padding: 2rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    border-bottom: solid 0.1rem #FFFFFF;
+}
+
+.fight-screen-body div {
+    margin: 0.5rem;
 }
 
 .actions {
@@ -187,4 +233,69 @@ img {
 
 button:hover {
     cursor: pointer;
+}
+
+.attacker-one {
+    border-color: #F0E92B;
+}
+
+.attacker-two {
+    border-color: #F0E92B;
+}
+
+
+.attacked {
+    background: #991c39;
+    border: solid 0.1rem #991c39;
+}
+
+.victory-screen {
+    display: none;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.victory {
+    background: #000000;
+    height: 100%;
+    color: #FFFFFF;
+    margin: 0 auto;
+    border: solid 0.1rem #F0E92B;
+}
+
+.victory-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.victory-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+
+.exit-button, .restart-button {
+    background: #000000;
+    color: #F0E92B;
+    border: solid 0.1rem #FFFFFF;
+    padding: 0.5rem;
+    width: 300px;
+    margin: 0.4rem;
+}
+
+
+li {
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
 }

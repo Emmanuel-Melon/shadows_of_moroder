@@ -1,20 +1,10 @@
 import $ from 'jquery'
 import axe from 'Scenes/Map/axe.png'
 
-/**
- * components
- */
-import Movements from './Movement'
-
 class Players {
   constructor (positions) {
     this.positions = positions
-    this.obstacles = [
-      'player',
-      'trap'
-    ]
     this.health = 100
-    this.winner = false
     this.turn = false
   }
 
@@ -30,8 +20,6 @@ class Players {
       ...playerOne
     })
     player1Img.addClass('weapon')
-    // does this replace or append?
-    // append or replace?
     $(playerOne).text('1')
   }
 
