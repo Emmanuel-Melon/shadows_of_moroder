@@ -1,8 +1,10 @@
 .cell {
     background: #293E23;
     border: solid 1px #6CAA2F;
-    height: 60px;
-    flex-basis: 8%;
+    margin: 0.1rem;
+    border-radius: 0.4rem;
+    height: 64px;
+    flex-basis: 9%;
     opacity: 1;
     display: flex;
     justify-content: center;
@@ -69,33 +71,34 @@
 }
 
 .allowed {
-    border: solid 1px #ffb710;
+    background: #6CAA2F;
+    border: solid 1px #F0E92B;
 }
 
 .unavailable {
     background-size: contain;
-    background: rgba(138, 20, 51, 0.4) url(../../../assets/img/x.png) no-repeat;
+    background: #991c39 url(../../../assets/img/x.png) no-repeat;
 }
 
 .axe {
     background-size: contain;
-    background: transparent url(../../../assets/img/axe.png) no-repeat;
+    background:  url(../../../assets/img/axe.png) no-repeat;
 }
 
 /* upg_sword */
-.spear {
+.hammer {
     background-size: contain;
-    background: transparent url(../../../assets/img/hammer.png) no-repeat;
+    background: url(../../../assets/img/hammer.png) no-repeat;
 }
 
 .sword {
     background-size: contain;
-    background: transparent url(../../../assets/img/dagger.png) no-repeat;
+    background: url(../../../assets/img/dagger.png) no-repeat;
 }
 
 .health {
     background-size: contain;
-    background: transparent url(../../../assets/img/heart.png) no-repeat;
+    background: url(../../../assets/img/heart.png) no-repeat;
 }
 
 .empty-hover {
@@ -119,4 +122,20 @@
 
 .empty-clicked {
 
+}
+
+
+.allowed-weapon {
+    border: solid 0.1rem purple;
+}
+
+
+.purple {
+    background: #F0E92B;
+    border: solid 0.1rem sienna;
+}
+
+
+.oldWeapon {
+    border-color: red;
 }
