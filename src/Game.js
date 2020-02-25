@@ -17,7 +17,7 @@ class Game {
       ...game.players[1],
       moves: [],
       steps: [],
-      weapons: [],
+      weapons: [game.weapons[1]],
 
       // default weapon is sword
       currentWeapon: game.weapons[1]
@@ -27,7 +27,7 @@ class Game {
       ...game.players[1],
       moves: [],
       steps: [],
-      weapons: [],
+      weapons: [game.weapons[1]],
 
       // default weapon is sword
       currentWeapon: game.weapons[1],
@@ -122,24 +122,20 @@ class Game {
 
       // there's too much duplication and most of these snippets can be extracted into separate classes and methods
       if ($(this.active).hasClass('player-1')) {
-        // default weapon is a sword
-        const defaultWeapon = this.playerOne.weapons[0]
 
-        if (defaultWeapon.name === name) {
-          // $(oldPos).addClass(defaultWeapon.name)
-        } else {
           // the weapon the player is about to pick
           const [newWeapon] = this.weapons.filter(weapon => weapon.name === classes[1])
 
           // get the last weapon a player had picked
           const lastWeapon = this.playerOne.weapons[this.playerOne.weapons.length - 1]
 
-          // Only using this technique for demo purposes, the use of a JavaScript set would be more appropriate in here
+        // if it doesn't include
           if (!this.playerOne.weapons.includes(newWeapon)) {
             this.playerOne.weapons.push(newWeapon)
             $(oldPos).addClass(lastWeapon.name)
           }
-        }
+
+
       } else if ($(this.active).hasClass('player-2')) {
         // the weapon the player is about to pick
         const [newWeapon] = this.weapons.filter(weapon => weapon.name === classes[1])
