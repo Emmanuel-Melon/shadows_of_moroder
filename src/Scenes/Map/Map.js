@@ -9,10 +9,10 @@ import './Map.css'
 // import Movement from '../../Components/Movements/Movement'
 
 class Map {
-  constructor (map, gridSize, currentGame) {
+  constructor (map, gridSize, game) {
     this.gameContainer = map
     this.gridSize = gridSize
-    this.game = currentGame
+    this.game = game
 
     this.content = $('<div></div>').addClass('map-scene_content')
     // initialization
