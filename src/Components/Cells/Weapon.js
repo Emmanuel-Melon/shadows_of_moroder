@@ -2,9 +2,8 @@ import $ from 'jquery'
 import './Cell.css'
 
 class Weapon {
-  constructor (GRID_SIZE, weapon, game) {
-    this.GRID_SIZE = GRID_SIZE
-    this.className = weapon.name
+  constructor (weapon, game) {
+    this.weapon = weapon
     this.game = game
     this.add()
   }
@@ -21,7 +20,7 @@ class Weapon {
 
   placeItem (row, col) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
-    cell.addClass(this.className).addClass('weapon')
+    cell.addClass(this.weapon.name).addClass('weapon')
     cell.attr('data-type', 'weapon')
 
     // Make that cell unavailable for later use
@@ -29,8 +28,8 @@ class Weapon {
   }
 
   add () {
-    let randCellRow = Weapon.getRandomInt(1, this.GRID_SIZE - 2)
-    let randCellCol = Weapon.getRandomInt(1, this.GRID_SIZE - 2)
+    let randCellRow = Weapon.getRandomInt(1, this.game.gridSize - 2)
+    let randCellCol = Weapon.getRandomInt(1, this.game.gridSize - 2)
 
     // We've found an available cell
     if (this.isAvailableCell(randCellRow, randCellCol)) {

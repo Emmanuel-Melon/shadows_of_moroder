@@ -2,9 +2,8 @@ import $ from 'jquery'
 import './Cell.css'
 
 class UnavailableCell {
-  constructor (GRID_SIZE, game) {
+  constructor (game) {
     this.game = game
-    this.GRID_SIZE = GRID_SIZE
   }
 
   static getRandomInt (min, max) {
@@ -17,24 +16,20 @@ class UnavailableCell {
     return !this.game.unavailableCells.includes(`${row},${col}`)
   }
 
-  placeItem (row, col, itemClassName) {
+  placeItem (row, col) {
     const cell = $(`[data-pos='(${row}, ${col})']`)
     cell.addClass('unavailable')
     cell.attr('data-type', 'unavailable')
-    // Make that cell unavailable for later use
     this.game.unavailableCells.push(`${row},${col}`)
   }
 
   dimCell () {
-    let randCellRow = UnavailableCell.getRandomInt(0, this.GRID_SIZE - 1)
-    let randCellCol = UnavailableCell.getRandomInt(0, this.GRID_SIZE - 1)
+    let randCellRow = UnavailableCell.getRandomInt(0, this.game.gridSize - 1)
+    let randCellCol = UnavailableCell.getRandomInt(0, this.game.gridSize - 1)
 
-    // We've found an available cell
     if (this.isAvailableCell(randCellRow, randCellCol)) {
-      const cell = this.isAvailableCell(randCellRow, randCellCol)
       this.placeItem(randCellRow, randCellCol, 'unavailable')
     } else {
-      // Try again!
       return this.dimCell()
     }
   }

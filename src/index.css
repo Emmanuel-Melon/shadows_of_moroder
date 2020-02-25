@@ -32,18 +32,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .map {
     background: black;
-    border: solid 0.1rem white;
     padding: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
+    border: solid 0.1rem white;
 }
 
 
 .main {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -62,14 +61,14 @@ img {
 }
 
 .pane {
-    width: 18%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top: solid 0.1rem white;
     border-bottom: solid 0.1rem white;
     padding: 1rem;
-    height: 80%;
+    height: 100%;
+    box-shadow: 0 19px 38px rgba(108, 170, 47, 0.25), 0 15px 12px rgba(41, 62, 35, 0.25);
 }
 
 .left {
@@ -136,6 +135,7 @@ img {
     background: #000;
     border: solid 0.2rem rgba(20,82,65,1);
     color: #F0E92B;
+    box-shadow: 0 19px 38px rgba(108, 170, 47, 0.25), 0 15px 12px rgba(41, 62, 35, 0.25);
 }
 
 .pane-body {
@@ -162,8 +162,8 @@ img {
     text-align: center;
     color: #F0E92B;
     padding: 0.4rem;
-    width: 90%;
-    margin: 0 auto;
+    width: 95%;
+    margin: 0 auto 1rem;
     border: solid 0.04rem #FFFFFF;
 }
 
@@ -181,7 +181,6 @@ img {
 }
 
 .fight-screen {
-    width: 100%;
     height: 100%;
     border-left: solid 0.1rem #FFFFFF;
     border-right: solid 0.1rem #FFFFFF;

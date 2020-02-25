@@ -2,14 +2,16 @@
     background: #293E23;
     border: solid 1px #6CAA2F;
     margin: 0.1rem;
-    border-radius: 0.4rem;
-    height: 64px;
+    border-radius: 0.5rem;
+    height: 100%;
+    min-height: 64px;
     flex-basis: 9%;
     opacity: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #FFFFFF;
+    box-shadow: 0 19px 38px rgba(108, 170, 47, 0.25), 0 15px 12px rgba(41, 62, 35, 0.25);
 }
 
 .cell-hovered {
@@ -72,7 +74,7 @@
 
 .allowed {
     background: #6CAA2F;
-    border: solid 1px #F0E92B;
+    border: solid 1px #6CAA2F;
 }
 
 .unavailable {
@@ -82,18 +84,22 @@
 
 .axe {
     background-size: contain;
-    background:  url(../../../assets/img/axe.png) no-repeat;
+    background: #000000 url(../../../assets/img/axe.png) no-repeat;
 }
 
 /* upg_sword */
 .hammer {
     background-size: contain;
-    background: url(../../../assets/img/hammer.png) no-repeat;
+    background: #000000 url(../../../assets/img/hammer.png) no-repeat;
 }
 
 .sword {
     background-size: contain;
-    background: url(../../../assets/img/dagger.png) no-repeat;
+    background: #293E23 url(../../../assets/img/dagger.png) no-repeat;
+}
+
+.weapon-allowed {
+    border: solid 1px #F0E92B;
 }
 
 .health {
@@ -126,7 +132,8 @@
 
 
 .allowed-weapon {
-    border: solid 0.1rem purple;
+    background: #000000;
+    border: solid 1px #F0E92B;
 }
 
 
