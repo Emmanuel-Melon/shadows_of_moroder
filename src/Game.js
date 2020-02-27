@@ -1,16 +1,32 @@
 import $ from 'jquery'
 
 /**
+ * preload everything man assets
+ */
+import weapon from "Music/weapon.wav"
+
+/**
  * scenes
  */
 import Fight from './Scenes/Fight/Fight'
 import Victory from './Scenes/Victory/Victory'
+import victory from "Music/fight.wav";
 
 /**
  *
  */
 class Game {
   constructor (game) {
+
+
+    // init weapons as an empty array and leave default weapon if it empty
+    // default weapons should be a shared object
+    // refactor code so that you don't have to check if it is player 1 or 2 every time
+    // move attacks, movements and everything else into more specialized classes
+    // write a few helpers to help with selectors (regex, contains), arrays, strings and event listeners.
+    // load all assets before you start the game
+    // code split and load only required assets
+    // add attack and defend methods to players or a specialized attack classes that take in a player and an opponent?
     this.game = game
     this.players = game.players
     this.playerOne = {
@@ -52,21 +68,32 @@ class Game {
    * ! bug player disappears when you revisit the same weapon
    */
   pickNewWeapon (object, person) {
+    // load weapon sound
+
+
+
     const classes = $(object).attr('class').split(/\s+/)
 
     // that's it?
+    console.log(classes[1])
+    console.log(classes[2])
     $(object).removeClass(`${classes[1]} ${classes[2]}`)
 
     // extract to a function?
     const [weapon] = this.game.weapons.filter(weapon => weapon.name === classes[1])
 
     if ($(person).hasClass('player-1')) {
-      const lastWeapon = this.playerOne.weapons[this.playerOne.weapons.length - 1]
+      console.log(this.playerOne.weapons)
+      const lastWeapon = this.playerOne.weapons[this.playerOne.weapons.length - 2]
+
+      // issue is if next weapon already exists!
       const dashboard = $('.attack-bar-one')
       this.playerOne.currentWeapon = weapon
       const effect = dashboard.text()
       dashboard.html(`${(parseInt(effect) + (weapon.effect))}`)
       $(person).addClass(lastWeapon.name)
+
+      // play
     } else if ($(person).hasClass('player-2')) {
       const lastWeapon = this.playerTwo.weapons[this.playerTwo.weapons.length - 1]
       const dashboard = $('.attack-bar-two')
@@ -182,6 +209,7 @@ class Game {
 
   /**
    * ! hardcoded selectors (not very maintainable)
+   * how about you return a flat array?
    * @param row
    * @param col
    * @returns {(jQuery|HTMLElement)[]}
@@ -228,6 +256,8 @@ class Game {
    */
   highLightAvailable (cells) {
     cells.forEach(cell => {
+      // cell == [{}, {}]
+      // how about you return a flat array and use getAdjacent to do this?
       if ($(cell).hasClass('unavailable') || $(cell).hasClass('player')) {
         // don't use an index, use a better selector
         // used to determine allowed movements in adjacent cells

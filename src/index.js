@@ -3,6 +3,13 @@ import './index.css'
 import Game from './Game'
 
 /**
+ * assets
+ */
+import elf from "Images/elf.jpg"
+import orc from "Images/orc.jpg"
+import victory from "Music/fight.wav"
+
+/**
  * components
  */
 import Map from './Scenes/Map/Map'
@@ -28,6 +35,11 @@ class Main {
   }
 
   init () {
+
+    // init assets
+    $(".orc").attr("src", orc)
+    $(".elf").attr("src", elf)
+
     new Map(this)
 
     // initialize dimmed cells
@@ -56,5 +68,10 @@ class Main {
 
 // initialize game
 $(document).ready(() => {
+
+  // play something?
+  var obj = document.createElement("audio");
+  obj.src = victory;
+  // obj.play();
   new Main().init()
 })

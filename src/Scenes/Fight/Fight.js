@@ -1,11 +1,25 @@
 import $ from 'jquery'
 
 /**
+ * assets
+ */
+import fight from "Music/fight.wav"
+
+
+/**
  * @description manages fights between players
+ * display weapon on the panes
+ * and remove everything else
+ * add health bars on top of player profiles in the main section
  */
 class Fight {
   constructor (game) {
     this.game = game
+
+    // learn how to switch and loop and do all of that stuff
+    var obj = document.createElement("audio");
+    obj.src = fight;
+    // obj.play();
   }
 
   checkVictory (score) {
@@ -19,6 +33,8 @@ class Fight {
    */
   attack () {
     if ($(this.game.active).hasClass('player-1')) {
+
+
       // add to previous moves
       this.addToPreviousActions({ type: 'attack' })
 
@@ -56,8 +72,20 @@ class Fight {
       const profileOne = $('.profile-1')
       const profileTwo = $('.profile-2')
 
-      profileOne.removeClass('attacker-one')
-      profileTwo.addClass('attacker-two')
+      profileOne.removeClass('attacker-one').addClass("hidden")
+      profileTwo.removeClass("hidden").addClass('attacker-two')
+
+      // disable buttons for this player
+      $(".attack-button-one").attr("disabled", true).addClass("hidden")
+      $(".defense-button-one").attr("disabled", true).addClass("hidden")
+
+      // enable for other player
+      $(".attack-button-two").attr("disabled", false).removeClass("hidden")
+      $(".defense-button-two").attr("disabled", false).removeClass("hidden")
+
+      // here's where you should call disableOtherPlayer
+      $(".left").addClass("hidden")
+      $(".right").removeClass("hidden")
 
       // swap turns
       this.swapTurns()
@@ -100,8 +128,21 @@ class Fight {
       const profileOne = $('.profile-1')
       const profileTwo = $('.profile-2')
 
-      profileOne.addClass('attacker-one')
-      profileTwo.removeClass('attacker-two')
+      // this here
+      profileOne.removeClass("hidden").addClass('attacker-one')
+      profileTwo.removeClass('attacker-two').addClass("hidden")
+
+      // disable buttons for this player
+      $(".attack-button-two").attr("disabled", true).addClass("hidden")
+      $(".defense-button-two").attr("disabled", true).addClass("hidden")
+
+      // enable for other player
+      $(".attack-button-one").attr("disabled", false).removeClass("hidden")
+      $(".defense-button-one").attr("disabled", false).removeClass("hidden")
+
+
+      $(".right").addClass("hidden")
+      $(".left").removeClass("hidden")
 
       // swap turns
       this.swapTurns()
@@ -114,6 +155,9 @@ class Fight {
 
   swapTurns () {
     // swaps active and next by using temporary variable
+
+    // this.disableOtherPlayer(this.game.active)
+
     const temp = this.game.next
     this.game.next = this.game.active
     this.game.active = temp
@@ -121,12 +165,9 @@ class Fight {
 
   disableOtherPlayer (player) {
     if ($(player).hasClass('player-1')) {
-      $('.attack-button-one').prop('disabled', true)
-      $('.defense-button-one').prop('disabled', true)
+      $('.left').addClass("fire")
     } else if ($(player).hasClass('player-2')) {
-      console.log('disabling player 1')
-      $('.attack-button-two').prop('disabled', true)
-      $('.defense-button-two').prop('disabled', true)
+      $('.right').addClass("water")
     }
   }
 
@@ -198,9 +239,12 @@ class Fight {
       profile.addClass('attacker-one')
 
       // highlight pane
-      // const pane = $('.pane-2').addClass('active-pane')
+      $('.pane-1').addClass('active-pane').removeClass("hidden")
+      $('.pane-2').addClass("hidden")
 
       // highlight active player?
+
+      $(".profile-2").addClass("hidden")
       return this.game.active
     } else if ($(this.game.active).hasClass('player-2')) {
       // enlarge profile
@@ -208,8 +252,12 @@ class Fight {
       profile.addClass('attacker-two')
 
       // highlight pane
-      // const pane = $('.pane-2').addClass('active-pane')
+      $('.pane-2').addClass('active-pane').removeClass("hidden")
+      $('.pane-1').addClass("hidden").removeClass('active-pane')
       // highlight active player?
+
+
+      $(".profile-1").addClass("hidden")
       return this.game.active
     }
   }

@@ -61,6 +61,7 @@ img {
 }
 
 .pane {
+    transition: all 0.3s ease-in-out;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,6 +133,7 @@ img {
 
 
 .profile {
+    transition: all 0.3s ease-in-out;
     background: #000;
     border: solid 0.2rem rgba(20,82,65,1);
     color: #F0E92B;
@@ -297,4 +299,13 @@ li {
     color: #FFFFFF;
     display: flex;
     flex-direction: column;
+}
+
+
+.hidden {
+    pointer-events: none;
+    border: solid 0.2rem #000000;
+    background: #000000;
+    opacity: 0.2;
+    color: #FFFFFF;
 }
