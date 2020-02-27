@@ -17,8 +17,9 @@ module.exports = {
     devtool: "inline-source-map",
     resolve: {
         alias: {
-            Images: path.resolve(__dirname, 'assets/img/'),
-            Scenes: path.resolve(__dirname, 'src/Scenes/')
+            Music: path.resolve(__dirname, './assets/audio/'),
+            Images: path.resolve(__dirname, './assets/img/'),
+            Scenes: path.resolve(__dirname, './src/Scenes/')
         }
     },
     module: {
@@ -38,13 +39,13 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|svg)$/,
+                test: /\.(png|svg|jpeg|jpg)$/,
                 use: [
                     "file-loader"
                 ]
             },
             {
-                test: /\.(mp3|mp4)$/,
+                test: /\.(mp3|mp4|wav)$/,
                 use: [
                     "file-loader"
                 ]
