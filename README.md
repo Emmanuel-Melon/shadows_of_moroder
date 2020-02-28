@@ -1,15 +1,34 @@
 [![Build Status](https://travis-ci.org/Emmanuel-Melon/shadows_of_moroder.svg?branch=master)](https://travis-ci.org/Emmanuel-Melon/shadows_of_moroder)
 # Shadows of Mordor
-Work-In-Progress
+A JavaScript turn-based board game where players move across the board two steps at most in either a vertical or a horizontal direction. 
+Players collect weapons in preparation for a fight and start fighting when they land on adjacent cells.  
 
 ## Overview
-Work-In-Progress
+The game consists of the following two modes
+- Fight Mode
+- Map Mode
+
+### Map Mode
+Players move across cells and collect weapons whilst avoiding obstacles.
+![Screenshot of game map](./map.png)
+
+### Fight Mode
+Players take turns in either attacking or defending.
+#### Attack 
+Players attack and damage is inflicted on opponent.
+#### Defense
+Players sustain 50% damage in the next turn when they choose to defend.
+![Screenshot of fight screen](./fight.png)
 
 ### Features
-Work-In-Progress
+- Game map consisting of cells players could move across.
+- Horizontal and vertical movements of players across the board.
+- Fight sequence
 
 ### Gameplay
-Work-In-Progress
+- Players can take vertical or horizontal 2 steps across empty cells.
+- Players collect weapons by landing on cells that contain weapons.
+- Players enter fight mode when they land on adjacent cells.
 
 ### Live Demo
 Link will be made available soon.
@@ -34,5 +53,13 @@ ECMAScript™ is the standard behind JavaScript. It has had a number of very use
 ### jQuery
 jQuery is a JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.  
 [**Learn More**](https://jquery.com/)
+
+### Upcoming Features
+- [ ] Persist player information and game data.
+- [ ] Add music and animations.
+- [ ] Add Menu and settings.
+- [ ] Create responsive views.
+- [ ] Use a CSS preprocessor i.e Sass
+- [ ] Loaders and screen transitions
 
 
